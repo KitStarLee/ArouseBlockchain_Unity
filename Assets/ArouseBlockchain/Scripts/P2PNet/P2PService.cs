@@ -57,17 +57,16 @@ namespace ArouseBlockchain.P2PNet
         private Process parentProcess;
         public P2PService()
         {
-
-            string parentProcessName = System.IO.Path.GetFileName(System.Environment.CommandLine);
-
-            // 获取父进程的句柄
-            parentProcess = Process.GetProcessesByName(parentProcessName).FirstOrDefault();
-
-            ALog.Log("!!! Parent process is null={0} ； ID= {1} ", (parentProcess == null), parentProcess?.Id);
-
-
             if (AUtils.IRS)
             {
+                string parentProcessName = System.IO.Path.GetFileName(System.Environment.CommandLine);
+
+                // 获取父进程的句柄
+                parentProcess = Process.GetProcessesByName(parentProcessName).FirstOrDefault();
+
+                ALog.Log("!!! Parent process is null={0} ； ID= {1} ", (parentProcess == null), parentProcess?.Id);
+
+
                 if (parentProcess != null)
                 {
                     WaitKill();

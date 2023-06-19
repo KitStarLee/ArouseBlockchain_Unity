@@ -1,8 +1,8 @@
 # Arouse Blockchain [Unity独立区块链]
 
-<img src="https://bed.metarouse.work/img/log_h.jpeg" alt="Arouse徽章" width="200;" />
+![Arouse徽章](https://bed.metarouse.work/img/log_h.jpeg)
 
-<img src="https://bed.metarouse.work/img/352b184055f74b6daeb446984d9a4028.gif" alt="在这里插入图片描述" width="250;" /><img src="https://bed.metarouse.work/img/f2e0121b17d3403183ea82799b02e764.gif" alt="在这里插入图片描述" width="250;" /><img src="https://bed.metarouse.work/img/eceeb2191e784399961ef7cab6cf30d3.gif" alt="在这里插入图片描述" width="250;" />
+![在这里插入图片描述](https://bed.metarouse.work/img/352b184055f74b6daeb446984d9a4028.gif)![在这里插入图片描述](https://bed.metarouse.work/img/f2e0121b17d3403183ea82799b02e764.gif)![在这里插入图片描述](https://bed.metarouse.work/img/eceeb2191e784399961ef7cab6cf30d3.gif)
 
 
 
@@ -16,7 +16,10 @@
 
 # 快捷链接
 
-[<img src="https://bed.metarouse.work/img/38eb05d8b79f4b959c5b458f2e97fbe9.png" alt="GitHub源码地址" width="50;" />](https://github.com/KitStarLee/ArouseBlockchain_Unity)    &nbsp;&nbsp;&nbsp; [<img src="https://bed.metarouse.work/img/797655f23b3f4f74b0b867e5caa0b501.png" alt="Gitee源码地址" width="50;" />](https://gitee.com/KitStarLee_admin/ArouseBlockchain_Unity.git) &nbsp;&nbsp;&nbsp; 
+[GitHub](https://github.com/KitStarLee/ArouseBlockchain_Unity)
+
+[Gitee](https://gitee.com/KitStarLee_admin/ArouseBlockchain_Unity.git)
+
 
 ---
 
@@ -78,7 +81,9 @@
 
 ## 3. 整体架构
 
-<img src="https://bed.metarouse.work/img/240b5b4ddd354ac7ad6f558b3b8fbf76.png" width="500;" />
+![](https://bed.metarouse.work/img/240b5b4ddd354ac7ad6f558b3b8fbf76.png)
+
+
 
 ### 3.1 核心模块
 
@@ -158,7 +163,7 @@
 
 以下⬇️是所有Assets资源下的文件夹
 
-<img src="https://bed.metarouse.work/img/4cfdf5e854ee4bf2881413264e951b10.png" width="400;"/>
+![](https://bed.metarouse.work/img/4cfdf5e854ee4bf2881413264e951b10.png)
 
 | 文件夹                          | 说明                                     |
 | ------------------------------- | ---------------------------------------- |
@@ -183,7 +188,7 @@
 
 以下⬇️是`ArouseBlockchain/Scripts`脚步文件夹列表。
 
-![在这里插入图片描述](https://bed.metarouse.work/img/ee0b109085a440b89b343498893ef4b1.png)
+![](https://bed.metarouse.work/img/ee0b109085a440b89b343498893ef4b1.png)
 
 | 文件/文件夹                      | 路径                           | 说明                                                         |
 | -------------------------------- | ------------------------------ | ------------------------------------------------------------ |
@@ -225,7 +230,7 @@
 # 三. 代码使用💻
 > 本教程只能把一些重点进行讲解，无法对每个脚步和代码都进行一行行说明，所以肯定会有遗漏，如有你无法明天的，可以留言私信。
 ## 1. 发布服务器版本
-<img src="https://bed.metarouse.work/img/0fd6ab61aacb4713aefb431b0993eb4b.png" width="600;" />
+![](https://bed.metarouse.work/img/0fd6ab61aacb4713aefb431b0993eb4b.png)
 
 服务器版本需要选中且只能Server场景，然后切换到`Dedicated Server`发布平台，点击`Build` 即可发布出没有任何渲染画面的服务器软件，可以发布到 Linux、Window、Mac平台。
 
@@ -244,11 +249,11 @@
 
 ## 2. 运行客户端
 
-<img src="https://bed.metarouse.work/img/a4511c39742645f7bfb04f593edad2cb.png" width="600;" />
+![](https://bed.metarouse.work/img/a4511c39742645f7bfb04f593edad2cb.png)
 
 依据上图的文件路径找到，客户端场景，运行即可。
 
-<img src="https://bed.metarouse.work/img/da18398e3aa843808dcdc916fe73ed95.png" width="600;" />
+![](https://bed.metarouse.work/img/da18398e3aa843808dcdc916fe73ed95.png)
 
 区块链的核心代码均在`ArouseBlockchain`对象上，主要代码即`ABlockChain`，可以看到上面会有一些测试按钮，从上到下分别对应的 `1. 通过公钥地址发送交易(币)`、`2. 通过公钥地址发送物品(图片...)`、`3. 获取对应地址的余额和物品列表`、`4. 获取历史的交易列表`、`5. 展示钱包信息`、`6. 展示创世区块和最后一个块的信息`。
 而ANetworkHost 和 NetworkManager的配置说明可以查看[相关文档](https://superversus.com/netcode/api/SuperNet.Netcode.Transport.HostConfig.html)。
@@ -258,7 +263,7 @@
 ## 3. 在区块链中添加定制的数据类型
  如果需要定义自己的区块数据，需要在`NetStorageItem.cs`中添加自己数据对象的类，目前已有了`StorageNumberItem`数字型对象，可以进行积分、经验等等数字类型的数据； 以及`StorageObjItem`对象型对象，理论上你的数据类型不是特别复杂完全可以用此对象作为交易数据对象，当然也可以继承重构。
 
-<img src="https://bed.metarouse.work/img/4ba5a2d2ae414d53b32e6e02f0ef7f18.png" width="600;" />
+![](https://bed.metarouse.work/img/4ba5a2d2ae414d53b32e6e02f0ef7f18.png)
 
 当你定制了你自己的数据类型之后，还要在`AStorageItem.cs` ⬆️代码中修改铸造方法，让代码适应你的数据类型。这样，区块链上进行的数据交互就可以有更多的可能性。
 
@@ -267,7 +272,7 @@
 ## 4. 添加自定义的网络消息体
 > 其中P2P网络中，服务器和客户端的边界是相对模糊的，这里代码会进行分开命名主要是为了方便理解。但在业务处理中，服务和客户端的业务处理和传统的方式不同。理论上P2P的客户端也可以是服务器，服务器也可以是客户端，我们统一都称呼为 Host。
 
-<img src="https://bed.metarouse.work/img/039eec30fdbc4cc2830af4c9d95ff227.png" width="600;" />
+![](https://bed.metarouse.work/img/039eec30fdbc4cc2830af4c9d95ff227.png)
 
 ### 4.1 自定义数据结构和解析业务
 ⬆️上图所示是区块模块需要进行网络通信的代码。设计和构造需要去`NetBlock.cs`脚步中进行编写，此脚步中代码主要分为两部分，一部分是数据传输过程中的结构和类型定义，一部分是讯通请求和响应的业务处理。
@@ -333,21 +338,21 @@ public enum TransactionMessageType : byte
 	其中cancellationToken是统筹管理线程，并用来控制线程的响应超时时间的。如果不设置此数值，Unity主线程不会帮助你释放对应线程的，这会导致很多错误。
 
 ### 4.3 响应业务逻辑
-<img src="https://bed.metarouse.work/img/7ba9d9c2e92e46c5ac34d8af480dd9d4.png" width="600;" />
+![](https://bed.metarouse.work/img/7ba9d9c2e92e46c5ac34d8af480dd9d4.png)
 
 响应的业务逻辑会繁杂，所以需要单独的类中进行集成和实现。上图是现实了`NetTransaction.TransactionServer` 交换服务响应业务的方法。根据此逻辑实现你的业务逻辑即可。
 
 ## 5. 添加自定义的配置文件
-<img src="https://bed.metarouse.work/img/ac1040a65e994ce79b5db6ddc244465e.png" width="600;" />
+![](https://bed.metarouse.work/img/ac1040a65e994ce79b5db6ddc244465e.png)
 
 如上图⬆️，可以通过目前我自己的一个云服务器获取到一个系统配置文件,以下是其中一个配置文件的内容。如图⬇️所示，此配置文件记录了一些社区管理人信任的初始节点`BootSrtapPeers`列表(目前有些节点是本地测试的) ，它可以帮助新用户提供初次接入区块链，后面的节点程序会自己从新记录更多有效的节点。其中`PublicIPServices`是公网验证的地址，目前是为了验证用户设备的公网地址，方便中继服务进行P2P打洞链接，并且还可以帮助判断是否多个设备处于同一局域网，如果局域网的设备会自动进行局域网通信，而不是公网，这对于游戏互动来说非常方便。
 
-<img src="https://bed.metarouse.work/img/a1e37ef713cd49008ede5dbb9d4ada64.png" width="400;" />
+![](https://bed.metarouse.work/img/a1e37ef713cd49008ede5dbb9d4ada64.png)
 
 如果你需要添加自己的配置文件，也还是阿里云 + 宝塔 方案，可以方便的让你部署自己的配置文件。
 
 ## 6. 完善Unity UI和业务代码
-<img src="https://bed.metarouse.work/img/8b403ae917994dc78188327fe56b77c2.png" width="600;" />
+![](https://bed.metarouse.work/img/8b403ae917994dc78188327fe56b77c2.png)
 
 为了更好的独立区块链的代码，方便你移植用于其他用途，这里会把Unity的代码放在单独的文件夹，即`../Assets/ArouseBlockchain/Unity..`中，里面包括了UI素材和大量UI的代码。由于UI的工作量不是区块链的核心，这里的UI并没有很完善，只是做了适当的展示，没有进行美化。如果你有兴趣可以进行修改。
 
@@ -458,7 +463,7 @@ public enum TransactionMessageType : byte
 
 感谢以下参与项目的人：
 
-<img src="https://bed.metarouse.work/img/960ca3084a4e42f49ef951f3c742f6d1.png" alt="Arouse徽章" width="300;" />
+![](https://bed.metarouse.work/img/960ca3084a4e42f49ef951f3c742f6d1.png)
 
 
 

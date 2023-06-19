@@ -5,8 +5,11 @@ using ArouseBlockchain.Common;
 using ArouseBlockchain.P2PNet;
 using ArouseBlockchain.Solve;
 using ArouseBlockchain.UI;
+using EasyButtons;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace ArouseBlockchain.UI
 {
@@ -15,6 +18,8 @@ namespace ArouseBlockchain.UI
     ///     -IUISolveParent ：UI页面事务处理的类（上一页下一页，跳转页面）
     ///         -IUIPage ： UI单独页面的管理
     /// </summary>
+    
+   // [ExecuteInEditMode]
     public class UIManager : MonoBehaviour
     {
         static UIManager instance;
@@ -72,6 +77,50 @@ namespace ArouseBlockchain.UI
             });
         }
 
+        /// <summary>
+        /// 编辑器模式下，更换所有字体为中文字体
+        /// </summary>
+        /// <param name="tMP_Font"></param>
+        [Button]
+        public void ChackUINullText(TMP_FontAsset tMP_Font)
+        {
+            var gameOBJs = SceneManager.GetActiveScene().GetRootGameObjects();
+            for (int i = 0; i < gameOBJs.Length; i++)
+            {
+              var meshText =  gameOBJs[i].GetComponentsInChildren<TextMeshProUGUI>(true);
+                if(meshText.Length > 0)
+                {
+                    for (int j = 0; j <  meshText.Length; j++)
+                    {
+                        if (meshText[j].font == null)
+                        {
+                            meshText[j].font = tMP_Font;
+                            meshText[j].UpdateFontAsset();
+                        }
+                    }
+                }
+            }
+        }
+
+        [Button]
+        public void ChackUINullLegacyText(Font fFont)
+        {
+            var gameOBJs = SceneManager.GetActiveScene().GetRootGameObjects();
+            for (int i = 0; i < gameOBJs.Length; i++)
+            {
+                var meshText = gameOBJs[i].GetComponentsInChildren<Text>(true);
+                if (meshText.Length > 0)
+                {
+                    for (int j = 0; j < meshText.Length; j++)
+                    {
+                        if (meshText[j].font == null)
+                        {
+                            meshText[j].font = fFont;
+                        }
+                    }
+                }
+            }
+        }
 
         void AutoOpenUISlove()
         {
