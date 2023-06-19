@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/ArouseBlockchain/Scenes/ArouseBlockchain.unity
+    guid: 9278de82547ed41fdb5c32ef2460581c
+  - enabled: 1
+    path: Assets/ArouseBlockchain/Scenes/Server.unity
+    guid: 17b0f853c934d427bb0244822148879b
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 55501364f0b194ba89dd819027d1c2de, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 19b059af5198547738676d3fb9c18a82, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 8b97ab22bfe3b4a02930d80fdcc6d3a9, type: 2}

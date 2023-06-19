@@ -1,0 +1,69 @@
+// Created by I Putu Kusuma Negara. markbrain2013[at]gmail.com
+// 
+// Ubudkuscoin is free software distributed under the MIT software license,
+// Redistribution and use in source and binary forms with or without
+// modifications are permitted.
+
+syntax = "proto3";
+
+option csharp_namespace = "ArouseBlockchain.Grpc";
+
+service TransactionService {
+
+    //
+  rpc Receive(TransactionPost) returns (TransactionStatus);
+  rpc Transfer(TransactionPost) returns (TransactionStatus);
+  rpc GetByHash(Transaction) returns (Transaction);
+  rpc GetRangeByAddress(TransactionPaging) returns (TransactionList);
+  rpc GetRange(TransactionPaging) returns (TransactionList);
+  rpc GetPoolRange(TransactionPaging) returns (TransactionList);
+  rpc GetPendingTxns(TransactionPaging) returns (TransactionList);
+}
+
+message TransactionPaging{
+  string address = 1;
+  int64 height = 2;
+  int32 page_number = 3;
+  int32 result_per_page = 4;
+}
+
+message TransactionGet{
+  string address = 1;
+  string hash = 2;
+}
+
+message TransactionPost{
+  Transaction Transaction = 1;
+  string sending_from = 2;
+}
+
+message TransactionStatus{
+  string status = 1;
+  string message = 2;
+}
+
+message TransactionList {
+  repeated Transaction transactions = 1;
+}
+
+message Transaction{
+  string hash = 1;
+  //交易时间
+  int64 time_stamp = 2;
+  //发送方
+  string sender = 3;
+  //接受方
+  string recipient = 4;
+  //交易的内容
+  double amount = 5;
+  //手续费
+  double fee = 6;
+  //交易的序列
+  int64 height = 7;
+  //签名
+  string signature = 8;
+  //公钥
+  string pub_key = 9;
+  //交易类型
+  string tx_type = 10;
+}

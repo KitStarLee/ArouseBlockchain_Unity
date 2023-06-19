@@ -1,0 +1,15 @@
+{
+    "BootSrtapPeers": [
+        "127.0.0.1:500"
+    ],
+    "Port": {
+        "Grpc": 5008,
+        "GrpcWeb.*": 5007
+    },
+    "NodeAddress": "172.20.10.4:5008",
+    "NodePassPhrase": "elite mosquito enrich remain story indoor mutual elite polar juice enter craft",
+    "TestPeers": [
+        "172.20.10.4:5008",
+        "172.20.10.2:5008"
+    ]
+}

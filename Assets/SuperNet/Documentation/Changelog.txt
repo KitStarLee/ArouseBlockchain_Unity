@@ -1,0 +1,302 @@
+# Changelog
+
+## [1.8] - 2021-09-02
+### Netcode
+- Peers can now recombine fragments from multiple packets at the same time
+- Fixed InvalidOperationException when the packet fragment count is a multiple of 8
+- Writer constructor is now public
+### Unity Core
+- NetworkHost PeerEvents now get invoked even if Connect is provided with a listener
+- NetworkHost can now be created and added with AddComponent
+- Fixed NullReferenceException thrown by NetworkMessageCopy in some cases
+- Messages sent via SendNetworkMessage are now also saved to prevent duplicates
+- Updated SuperNetMirrorTransport to latest version
+### Unity Editor
+- Removed NetworkAuthorityEditor exception when GetAuthoritativeComponents returns null
+- Removed NetworkPrefabEditor exception when GetNetworkComponents returns null
+- Removed NetworkManagerEditor exception when GetComponents returns null
+- Removed NetworkHostEditor exception when GetPeers returns null
+- NetworkHostEditor bandwidth can now be displayed with other units
+- NetworkHostEditor bandwidth is now displayed for each peer
+- Added Receive Lost to NetworkHostEditor Peer statistics fields
+### Unity Components NetworkTransform
+- Default ReceiveExtrapolate is now 0.4 instead of 0.1
+- Rigidbodies now use MovePosition/MoveRotation in FixedUpdate with SyncLocalTransform
+### Unity Components NetworkPrefab & NetworkSpawner
+- NetworkSpawner now initializes NetworkManager on startup
+- Added NetworkSpawner.DespawnAll to despawn all spawned instances
+- Added log when prespawned instances are spawned by a NetworkSpawner locally
+- Fixed log when prespawned instances are spawned by a NetworkSpawner remotely
+- NetworkSpawner now sends prefab component identities in the spawn message itself
+- NetworkPrefab is no longer sycnronizing component identities
+### Unity Components NetworkAuthority
+- Removed OnTransformParentChanged and OnTransformChildrenChanged
+### Unity Examples
+- P2P example GetPublicIP() now works even if Host isn't listening
+- Added BasicP2P example
+- Added BasicServerClient example
+- Arena example scene is now split into ArenaMenu and ArenaGame
+- Arena example server browser now includes server name and player count
+
+## [1.7] - 2021-05-21
+### Netcode
+- Clock tick difference between peers is now an exponential moving average
+- Added PeerConfig.TimeStability to control clock stability
+- Renamed Peer.Delta to Peer.DeltaLast, and added Peer.DeltaAverage for access to clock difference
+- First ping is now delayed to remove "Corrupted data ReadInternal" exceptions
+- Added optional packet loss and latency simulation to hosts
+- Added HostConfig simulator configuration values
+- Added Host.SetListener to replace the host listener
+- Upgraded HostTimestamp with operators and conversion methods
+- Created HostTimespan to store a time duration
+- The fields Host.Timestamp and Host.Ticks are now static
+- Added Host.Frequency to indicate ticks per second
+- Removed IMessage.Offset and added IMessage.Timestamp
+- Host.Timestamp renamed to Host.Now
+- Host.Listener and Peer.Listener are now null by default
+- Removed Acknowledged, TimeSent and TimeCreated field from MessageSent
+- Removed Peer field from MessageSent and MessageReceived
+- Reduced number of flush tasks created when sending messages
+- RTT is now only calculated with ping messages to avoid wrong calculations with custom timestamps
+### Unity Core
+- Privated Authority field on all components in favor of the SetAuthority method
+- Added readonly IsAuthority on all components with authority
+- Added the ability to rethrow exceptions in NetworkHost.Startup() and NetworkHost.Connect()
+- NetworkHost.GetPeers can no longer return null
+- NetworkManager.Register now invokes register events even if the component is already registered
+- Added NetworkHost.SendUnconnected and NetworkHost.SendBroadcast
+- Added INetworkRollbackable to implement rollback
+- NetworkManager is now a partial class with multiple files
+### Unity Core NetworkManager
+- Added Run(IEnumerator) to run coroutines
+- Added GetMainThread to get the main unity thread
+- Added RunAsync to NetworkComponent and NetworkManager for scheduling asynchronous tasks
+- Added NetworkManager.RollbackBegin and NetworkManager.RollbackEnd
+- Added rollback tools to the NetworkManager inspector editor
+### Unity Components NetworkTransform
+- Improved accuracy of interpolation/extrapolation by ignoring local values when receiving updates
+- Snapping/teleportation now happens at the correct time
+- If authority is lost, newly received values are interpolated with local values to reduce jitter
+- Added ReceiveAuthorityDelay to control how long after authority is lost to interpolate for
+- Added ReceiveSnapDuration to control maximum allowed duration between two received values
+- Added ReceiveDuration to control how long to keep updates for
+- NetworkTransfrom now implements INetworkRollbackable
+### Unity Components NetworkPrefab & NetworkSpawner
+- Added NetworkSpawner.Parent field to allow prefabs to spawn relative to the world
+- NetworkSpawner.Spawn(Position, Rotation) now has an additional relativeToParent parameter
+- NetworkSpawner.Spawn() can spawn relative to spawner or relative to parent
+- Added NetworkSpawner.Locked field to ignore authority and let anyone spawn
+- Added NetworkPrefab.Spawnee to get the peer that spawned the prefab
+- Static NetworkPrefabs without a spawner now get the network ID based on their name
+- Added NetworkPrefab.GetNetworkComponents to get all components managed by the prefab
+- Prefab inspector now displays a list of components, spawner and spawnee
+### Unity Components NetworkAuthority
+- Added Locked field to ignore authority and let anyone claim ownership
+- Claim() can now be called by all members on the network if unlocked
+- Added Timestamp field to get timestamp of when the ownership was last changed
+- Renamed Ownership field to IsOwner
+- OnNetworkAuthorityUpdate now includes a timestamp
+- Claim() now includes priority
+### Unity Examples
+- Arena example is now only using a single NetworkHost
+- P2P, Broadcast and Chat examples are now using NetworkHost instead of Host
+- Added NPCs and cars to arena example
+
+## [1.6] - 2021-04-05
+### Netcode
+- Unconnected empty messages are no longer compressed to avoid exceptions
+- Peer.Accept can now accept a null config
+- Added Rejected, Accepted and Peer fields in ConnectionRequest
+- Added Peer.SetListener to replace existing peer listener
+- Peer.Send no longer throws an exception if peer is disconnected or disposed
+- Renamed Reader parameter from "reader" to "message" in IPeerListener and PeerEvents
+- Renamed "ReadUint32" to "ReadUInt32" in Reader
+- Removed all unnecessary warnings with pragma directives
+- Reader.ReadColor now correctly reads all 4 components
+- Reader.Reset now allows last byte index as an argument
+- Reader.Reset position is no longer optional
+- Fixed incorrect timing calculations for timed messages
+- Added Peer.Delta field for access to clock difference between peers
+### Unity Core
+- Removed INetworkMessage to allow components to send a raw IMessage
+- Separated NetworkManager singleton into 3 manager singletons
+- Created NetworkManagerPeers to manage peer registration
+- Created NetworkManagerThread to manage unity main thread execution inside Run()
+- Created NetworkManagerTracker to manage component registration and messages
+- Added DuplicateTimeout configuration to NetworkManager to control duplicate message checking
+- Added LogEvents and LogExceptions configuration to NetworkManager to control debug output
+- Updated NetworkMirrorTransport to latest mirror version
+- Debug messages now check NetworkManager LogEvents and LogExceptions configuration first
+- Removed distinction between static and dynamic network ID
+- Added Reader.ReadNetworkID and Writer.Write(NetworkIdentity) extension methods
+- Added NetworkIdentity.GenerateRandomID method to generate a random ID
+### Unity Core NetworkComponent
+- Renamed NetworkIdentity to NetworkID
+- Renamed ResetNetworkIdentity to ResetNetworkID
+- Removed remote register events in favor of the NetworkRegistrar component
+- Changed send methods to accept IMessage instead of INetworkMessage
+- Added OnNetworkResend event to control resending of messages
+- Added events for other component registration and peer connect and disconnect
+- Renamed NetworkIsRegistered to IsRegisteredOnNetwork
+- OnNetworkMessage event now receives full message information instead of just the timestamp
+### Unity Core NetworkHost
+- Removed LogEvents in favor of NetworkManager configuration
+- Renamed AutoConnectAddress field to AutoConnect
+- Added AutoRegister field to control automatic peer registration
+- Removed Connections field
+- Removed SetTracking method in favor of peer registration via NetworkManager
+- ReplaceListener method renamed to SetListener
+- GetPeers now returns IReadOnlyList
+### Unity Components NetworkPrefab & NetworkSpawner
+- Network prefabs on the scene are now detected by the parent spawner automatically
+- NetworkSpawner.GetSpawnedPrefabs now returns IReadOnlyList instead of an array
+- Removed IgnoreRemoteSpawns and IgnoreRemoteDespawns fields in NetworkSpawner
+- Added Authority field to implement authority in NetworkSpawner
+### Unity Components
+- Updated components to 1.6 messaging system and added SyncChannel field
+- Added SetAuthority method to components with authority
+- Created INetworkAuthoritative and NetworkAuthority to help with authority managment
+- Created INetworkRegisterable and NetworkRegistrar to help with notifying register events
+- NetworkTransform now properly synchronizes child objects
+- Added OnNetworkTrigger event int NetworkAnimator
+- Debug messages now include NetworkID of the component every time
+
+## [1.5] - 2021-01-04
+### Netcode
+- Connection request messages sent via Host.Connect are now correctly received
+- Allocator.ReturnSent no longer throws an exception
+- ObjectDisposedException is no longer reported when expected
+- Removed null reference exceptions that would occur during peer disposal
+- Writer.Reset method is no longer public
+- Reader now checks for message overflows via the new CheckAvailableSpace method
+- Added Reader.Reset method for setting read position within the message
+- Added Reader.First, Reader.Last and Reader.Position properties
+- Added synchronous IPResolver.Resolve methods
+- ArrayPool and ObjectPool now allow zero length pools
+- Host.Allocator is now public
+- Removed Message and NetworkMessage structs to discourage delegate allocation
+- Added static Host.IsLocal and Host.IsPortUsed methods for checking local connections
+- Added IPResolver.GetLocalAddressIPv6 method for IPv6 LAN connections
+- Host.LocalEndPoint renamed to Host.BindAddress
+- Rejecting a ConnectionRequest now disposes it too so it cannot be accepted anymore
+- When Peer.Disconnect is called twice in a row it will now properly disconnect
+### Unity
+- NetworkHost.Startup now returns a bool indicating success
+- Replaced NetworkHost.LocalEndPoint with NetworkHost.GetBindAddress
+- Added NetworkHost.GetLocalAddress and NetworkHost.GetLoopbackAddress
+- Added NetworkHost.Connect method with IPEndPoint, IPeerListener and IWritable
+- Added NetworkHost.Dispose method for disposing the host
+- Added NetworkHost.PeerEvents and NetworkHost.HostEvents
+- NetworkSpawnerEditor no longer throws an exception if prefab is not assigned
+- NetworkHost and NetworkManager now detach from parents for persistence acrosss scenes
+- NetworkHost no longer freezes Unity when OnDestroy is called
+- Added NetworkHost.ReplaceListener to replace peer event listeners
+- Added NetworkHost.SetTracking to add or remove component tracking for peers
+- Added another NetworkSpawner.Spawn, both methods now return an instance
+- NetworkComponent.SendNetworkMessageAll now only has a single exclude peer
+- Added NetworkAnimator.SyncParameters and NetworkAnimator.SyncStates
+- Components now use message structs
+### Examples
+- P2P Example now compiles without a warning
+- Chat, Broadcast and Arena examples now use struct messages to reduce allocations
+- Rewritten Arena example to use unity components
+- Added server side physics objects to Arena example
+
+## [1.4] - 2020-12-14
+### Netcode
+- Namespace moved from SuperNet to SuperNet.Netcode
+- Reader.Buffer field is now public instead of internal
+- Peer.Disconnect no longer throws an exception if disposed
+### Unity
+- NetworkComponent.ResetNetworkIdentity now compiles without editor
+- New assembly definitions SuperNetEditor, SuperNetNetcode and SuperNetUnity
+
+## [1.3] - 2020-11-12
+### Netcode
+- HostConfig and PeerConfig are now serializable
+- PeerConfig.RemotePublicKey and HostConfig.PrivateKey are now ignored if they are empty strings
+- Peer.Dispose and Host.Dispose now notify the listener asynchronously
+- Host.Connect and Host.Accept now start connectiong asynchronously
+- Host socket BeginReceiveFrom/EndReceiveFrom replaced with ReceiveFromAsync
+- Host socket BeginSendTo/EndSendTo replaced with SendToAsync
+- Added SocketAsyncEventArgs pool to Allocator
+- Added Message struct to allow sending messages without implementing IMessage
+- IMessage now includes timestamp offset
+- Renamed IMessage.cs to Message.cs
+- Added Timed, Reliable, Ordered and Unique fields to MessageReceived and MessageSent handles
+- Fixed ObjectPool.Return method sometimes crashing due to negative index
+- Fixed packet fragmentation sometimes not sending the last fragment
+- Fixed send exception when encryption is enabled locally but not remotely
+- Fixed IL2CPP builds for phones by removing when on exception catching
+### Unity Core
+- Created NetworkHost for establishing connections
+- Created NetworkChannels to define all message channels
+- Created NetworkManager singleton for registering components
+- Created NetworkComponent base for all components
+- Created NetworkIdentity to identify components over the network
+- Created NetworkMessage for components to send
+- Created NetworkMirrorTransport for mirror networking support
+### Unity Components
+- Created NetworkTransform for synchronizing transforms and rigidbodies
+- Created NetworkAnimation for synchronizing legacy animations
+- Created NetworkAnimator for synchronizing mecanim animators
+- Created NetworkSpawner and NetworkPrefab for spawning components
+
+## [1.2] - 2020-08-09
+### Netcode
+- Peers now keep the connection open for a short while after receiving a disconnect request
+- All allocations across all peers on the host are now pooled via a single Allocator instance
+- Added ICryptoRandom and CryptoRandom to reuse the random number generator
+- CryptoRSA is now lazy-initialized to avoid initialization when authentication isn't used
+- Added inline Curve25519 methods for key generation to avoid extra allocations
+- IPResolver async methods can now be cancelled with a token
+- IPResolver GetLocalAddress now takes a port and constructs an IPEndPoint
+- Writer and Reader now compile on all Unity platforms
+- Added Encrypted and Authenticate fields to ConnectionRequest
+- Connection requests can now be accepted regardless of their encryption status
+- A disposed connection request can now still be rejected
+- Host ticks are no longer in unix time
+- Added internal access modifier to internal fields and methods
+- Added SuperNet assembly definition to prevent access to internal fields and methods
+- Exception messages now include extra information with string.Format()
+- MessageSent.SendCount renamed to Attempts
+- All spawned tasks now use PreferFairness to reduce latency
+### Events
+- Added OnHostShutdown event
+- OnPeerUpdateRTT doesn't have old rtt anymore
+- Removed ticks from OnHostReceiveUnconnected and OnHostReceiveBroadcast events
+### PeerConfig
+- New DisconnectDelay value controlling how long a connection stays open after a disconnect
+- Removed BuffersExpandLength, BuffersMaxLength, ReceivePoolCount values in favor of the new Allocator
+- Removed FragmentMaxCount, FragmentMaxLength values in favor of the new Allocator
+### HostConfig
+- Removed BuffersExpandLength, BuffersMaxLength, ReceivePoolLength values in favor of the new Allocator
+- Removed Authenticator, Compressor, Exchanger values in favor of internal initialization
+- Removed Authentication value (now automatically enabled if public or private keys are set)
+- Removed UnconnectedTimed (now always disabled as ticks are inaccurate)
+- Renamed ReceivePoolCount to ReceiveCount as it has nothing to do with the array pool anymore
+- Five new allocator values
+- New ReceiveMTU value
+### Examples & Documentation
+- Added chat server program that can be compiled without Unity
+- Arena example rewritten with easier to understand code
+- Arena relay program now has cleaner console output
+
+## [1.1] - 2020-07-27
+### Netcode
+- IPResolver async methods now use DNS.GetHostAddressesAsync
+- Added IPResolver method to get the local (LAN) IPAddress
+- Removed MessageType from the MessageReceived handle as it was always MessageType.Custom
+- Ordered reliable messages that come out of order are now properly reassembled back into order
+- New PeerConfig.OrderedDelayMax and PeerConfig.OrderedDelayTimeout configuration values
+- Fixed bug where broadcast didn't work with CRC32 enabled
+### Examples & Documentation
+- Created changelog and readme
+- Moved all examples into the SuperNet.Examples namespace
+- New Chat example with separate server and client scenes
+- New P2P example showcasing UDP hole punching for P2P connections
+- New Broadcast example showcasing host discovery on LAN networks
+- Arena relay now sends local IP for servers on the same IP instead of 127.0.0.1
+
+## [1.0] - 2020-07-23
+- Initial release

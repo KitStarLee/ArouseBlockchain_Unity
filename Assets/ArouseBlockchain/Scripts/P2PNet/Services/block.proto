@@ -1,0 +1,76 @@
+// Created by I Putu Kusuma Negara. markbrain2013[at]gmail.com
+// 
+// Ubudkuscoin is free software distributed under the MIT software license,
+// Redistribution and use in source and binary forms with or without
+// modifications are permitted.
+
+syntax = "proto3";
+
+option csharp_namespace = "ArouseBlockchain.Grpc";
+
+service BlockService {
+  //添加新的块
+  rpc Add(Block)returns (AddBlockStatus);
+  //获取剩余数据
+  rpc GetRemains(StartingParam)returns (BlockList);
+  //获取范围
+  rpc GetRange(BlockParams) returns (BlockList);
+  rpc GetByHeight(Block) returns (Block);
+  rpc GetByHash(Block) returns (Block);
+  rpc GetFirst(EmptyRequest) returns (Block);
+  rpc GetLast(EmptyRequest)  returns (Block);
+}
+
+message EmptyRequest{
+}
+
+message AddBlockStatus{
+  string status = 1;
+  string message = 2;
+}
+
+message StartingParam{
+  int64 height = 1;
+}
+
+message BlockParams{
+  int32 page_number = 1;
+  int32 result_per_page = 2;
+}
+
+message BlockList {
+  repeated Block blocks = 1;
+}
+
+message Block {
+
+  int32 version = 1;
+  //块的序列
+  int64 height = 2;
+  int64 time_stamp = 3;
+  //前一个块的哈希
+  string prev_hash = 4;
+  //自己的哈希
+  string hash = 5;
+  //交易数据
+  string transactions = 6;
+  //验证码
+  string validator = 7;
+  double validator_balance = 8;
+  string merkle_root = 9;
+  int32  num_of_tx = 10;
+  //总的交易梳理
+  double total_amount = 11;
+  //总的报酬
+  double total_reward = 12;
+  //困难度
+  int32 difficulty = 13;
+  //挖矿的随机数据
+  int32 nonce = 14;
+  //块的大小
+  int32 size = 15;
+  //块创建的时间
+  int32 build_time = 16;
+  //签名
+  string signature = 17;
+}

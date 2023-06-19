@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: ec50743644d3f1444a2c73b119e59cc3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ball_l
+    100002: ball_r
+    100004: calf_l
+    100006: calf_r
+    100008: clavicle_l
+    100010: clavicle_r
+    100012: //RootNode
+    100014: foot_l
+    100016: foot_r
+    100018: hand_l
+    100020: hand_r
+    100022: head
+    100024: index_01_l
+    100026: index_01_r
+    100028: index_02_l
+    100030: index_02_r
+    100032: index_03_l
+    100034: index_03_r
+    100036: lowerarm_l
+    100038: lowerarm_r
+    100040: middle_01_l
+    100042: middle_01_r
+    100044: middle_02_l
+    100046: middle_02_r
+    100048: middle_03_l
+    100050: middle_03_r
+    100052: neck_01
+    100054: pelvis
+    100056: pinky_01_l
+    100058: pinky_01_r
+    100060: pinky_02_l
+    100062: pinky_02_r
+    100064: pinky_03_l
+    100066: pinky_03_r
+    100068: ring_01_l
+    100070: ring_01_r
+    100072: ring_02_l
+    100074: ring_02_r
+    100076: ring_03_l
+    100078: ring_03_r
+    100080: Root
+    100082: spine_01
+    100084: spine_02
+    100086: spine_03
+    100088: thigh_l
+    100090: thigh_r
+    100092: thumb_01_l
+    100094: thumb_01_r
+    100096: thumb_02_l
+    100098: thumb_02_r
+    100100: thumb_03_l
+    100102: thumb_03_r
+    100104: upperarm_l
+    100106: upperarm_r
+    400000: ball_l
+    400002: ball_r
+    400004: calf_l
+    400006: calf_r
+    400008: clavicle_l
+    400010: clavicle_r
+    400012: //RootNode
+    400014: foot_l
+    400016: foot_r
+    400018: hand_l
+    400020: hand_r
+    400022: head
+    400024: index_01_l
+    400026: index_01_r
+    400028: index_02_l
+    400030: index_02_r
+    400032: index_03_l
+    400034: index_03_r
+    400036: lowerarm_l
+    400038: lowerarm_r
+    400040: middle_01_l
+    400042: middle_01_r
+    400044: middle_02_l
+    400046: middle_02_r
+    400048: middle_03_l
+    400050: middle_03_r
+    400052: neck_01
+    400054: pelvis
+    400056: pinky_01_l
+    400058: pinky_01_r
+    400060: pinky_02_l
+    400062: pinky_02_r
+    400064: pinky_03_l
+    400066: pinky_03_r
+    400068: ring_01_l
+    400070: ring_01_r
+    400072: ring_02_l
+    400074: ring_02_r
+    400076: ring_03_l
+    400078: ring_03_r
+    400080: Root
+    400082: spine_01
+    400084: spine_02
+    400086: spine_03
+    400088: thigh_l
+    400090: thigh_r
+    400092: thumb_01_l
+    400094: thumb_01_r
+    400096: thumb_02_l
+    400098: thumb_02_r
+    400100: thumb_03_l
+    400102: thumb_03_r
+    400104: upperarm_l
+    400106: upperarm_r
+    7400000: CrouchingLoopRunForward
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: CrouchingLoopRunForward
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 74
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
